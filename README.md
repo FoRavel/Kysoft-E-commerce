@@ -1,7 +1,7 @@
 # kysoft
 Projet - 1ère année BTS SIO
 
-Site internet e-commerce spécialisé dans le matériel informatique. Ce projet a servi de support pour l'épreuve E4 du BTS.
+Site internet e-commerce spécialisé dans le matériel informatique. Ce projet a été noté par un professeur.
 
 Spécificités techniques principales: 
 - Afficher sur plusieurs pages de la liste des produits disponibles à la vente (libellé, prix, description, photo, stock...). 
