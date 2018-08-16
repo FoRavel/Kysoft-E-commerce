@@ -16,3 +16,11 @@ Technologies employées:
 - HTML5, Bootstrap
 - SQL 
 - PhpMyAdmin
+
+CONFIGURATION BASE DE DONNEES:
+$con = mysqli_connect("localhost", "root", "", "kysoft");
+
+Le fichier .sql de la base de données se nomme "kysoft.sql". 
+
+POST SCRIPTUM:
+Le projet est vieux, n'a pas été maintenu depuis, il semblerait qu'une partie du projet soit manquante mais la seule particularité de ce projet que je tenais à montrer est sont les "listes liées" pour la recherche des produits et celle-ci fonctionne: Quand on sélectionne une catégorie dans la liste des catégories, la liste des sous-catégories affiche les sous catégories associées à la catégorie choisie.
