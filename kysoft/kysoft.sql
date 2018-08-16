@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Mars 2017 à 15:16
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.4.24
+-- Généré le :  Jeu 16 Août 2018 à 18:23
+-- Version du serveur :  10.1.21-MariaDB
+-- Version de PHP :  5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `kysoft`
@@ -26,11 +26,18 @@ SET time_zone = "+00:00";
 -- Structure de la table `categorie`
 --
 
-CREATE TABLE IF NOT EXISTS `categorie` (
-  `NO_CATEGORIE` int(11) NOT NULL AUTO_INCREMENT,
-  `NOM_CATEGORIE` varchar(50) NOT NULL,
-  PRIMARY KEY (`NO_CATEGORIE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `categorie` (
+  `NO_CATEGORIE` int(11) NOT NULL,
+  `NOM_CATEGORIE` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `categorie`
+--
+
+INSERT INTO `categorie` (`NO_CATEGORIE`, `NOM_CATEGORIE`) VALUES
+(1, 'Stockage'),
+(2, 'Ordinateurs');
 
 -- --------------------------------------------------------
 
@@ -38,11 +45,17 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 -- Structure de la table `marque`
 --
 
-CREATE TABLE IF NOT EXISTS `marque` (
-  `NO_MARQUE` int(11) NOT NULL AUTO_INCREMENT,
-  `NOM_MARQUE` varchar(50) NOT NULL,
-  PRIMARY KEY (`NO_MARQUE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `marque` (
+  `NO_MARQUE` int(11) NOT NULL,
+  `NOM_MARQUE` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `marque`
+--
+
+INSERT INTO `marque` (`NO_MARQUE`, `NOM_MARQUE`) VALUES
+(1, 'ASUS');
 
 -- --------------------------------------------------------
 
@@ -50,14 +63,20 @@ CREATE TABLE IF NOT EXISTS `marque` (
 -- Structure de la table `produit`
 --
 
-CREATE TABLE IF NOT EXISTS `produit` (
-  `REF_PRODUIT` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `produit` (
+  `REF_PRODUIT` int(11) NOT NULL,
   `NOM_PRODUIT` varchar(50) NOT NULL,
   `PRIX_UNITAIRE_HT` int(11) NOT NULL,
   `DESCRIPTION` text NOT NULL,
-  `NO_MARQUE` int(11) NOT NULL,
-  PRIMARY KEY (`REF_PRODUIT`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `NO_MARQUE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `produit`
+--
+
+INSERT INTO `produit` (`REF_PRODUIT`, `NOM_PRODUIT`, `PRIX_UNITAIRE_HT`, `DESCRIPTION`, `NO_MARQUE`) VALUES
+(1, 'ASUS', 1000, 'Un PC portable.', 1);
 
 -- --------------------------------------------------------
 
@@ -65,12 +84,19 @@ CREATE TABLE IF NOT EXISTS `produit` (
 -- Structure de la table `sous_categorie`
 --
 
-CREATE TABLE IF NOT EXISTS `sous_categorie` (
-  `NO_SOUS_CATEGORIE` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sous_categorie` (
+  `NO_SOUS_CATEGORIE` int(11) NOT NULL,
   `NOM_SOUS_CATEGORIE` varchar(50) NOT NULL,
-  `NO_CATEGORIE` int(11) NOT NULL,
-  PRIMARY KEY (`NO_SOUS_CATEGORIE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `NO_CATEGORIE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `sous_categorie`
+--
+
+INSERT INTO `sous_categorie` (`NO_SOUS_CATEGORIE`, `NOM_SOUS_CATEGORIE`, `NO_CATEGORIE`) VALUES
+(1, 'USB', 1),
+(2, 'Portables', 2);
 
 -- --------------------------------------------------------
 
@@ -78,12 +104,69 @@ CREATE TABLE IF NOT EXISTS `sous_categorie` (
 -- Structure de la table `utilisateur`
 --
 
-CREATE TABLE IF NOT EXISTS `utilisateur` (
+CREATE TABLE `utilisateur` (
   `LOGIN_UTILISATEUR` varchar(50) NOT NULL,
-  `MOT_DE_PASSE` varchar(50) NOT NULL,
-  PRIMARY KEY (`LOGIN_UTILISATEUR`)
+  `MOT_DE_PASSE` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`NO_CATEGORIE`);
+
+--
+-- Index pour la table `marque`
+--
+ALTER TABLE `marque`
+  ADD PRIMARY KEY (`NO_MARQUE`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD PRIMARY KEY (`REF_PRODUIT`);
+
+--
+-- Index pour la table `sous_categorie`
+--
+ALTER TABLE `sous_categorie`
+  ADD PRIMARY KEY (`NO_SOUS_CATEGORIE`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`LOGIN_UTILISATEUR`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `NO_CATEGORIE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `marque`
+--
+ALTER TABLE `marque`
+  MODIFY `NO_MARQUE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `REF_PRODUIT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `sous_categorie`
+--
+ALTER TABLE `sous_categorie`
+  MODIFY `NO_SOUS_CATEGORIE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
